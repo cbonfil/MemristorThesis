@@ -1,7 +1,7 @@
 close all
 clear all
 
-load('Ex51');
+load('Ex52');
 
 
 % for t=1:2:1200
@@ -337,8 +337,8 @@ for t=1:1:1200
 %     r4=(abs(1./pL4)+abs(1./pR4))/(abs(1./pL4(1))+abs(1./pR4(1)));
 %     r5=(abs(1./pL5)+abs(1./pR5))/(abs(1./pL5(1))+abs(1./pR5(1)));
 %     plot(1:t,r1,1:t,r2,1:t,r3,1:t,r4,1:t,r5)
-    
-plot((1:t)*dt,(pR1)/(pR1(1)),(1:t)*dt,(pR2)/(pR2(1)),(1:t)*dt,(pR3)/(pR3(1)),(1:t)*dt,(pR4)/(pR4(1)),(1:t)*dt,(pR5)/(pR5(1)))
+    curr2(t)=sv_pR(1,5,t);
+plot((1:t)*dt,1./((pR1)/(pR1(1))),(1:t)*dt,1./((pR2)/(pR2(1))),(1:t)*dt,1./((pR3)/(pR3(1))),(1:t)*dt,1./((pR4)/(pR4(1))),(1:t)*dt,1./((pR5)/(pR5(1))))
  
  % plot((1:t)*dt,abs((pR1)/(pR1(1))),(1:t)*dt,abs((pR2)/(pR2(1))),(1:t)*dt,abs((pR3)/(pR3(1))),(1:t)*dt,abs((pR4)/(pR4(1))),(1:t)*dt,abs((pR5)/(pR5(1))))
 % plot(sin((1:t)/1e2),(pR1)/(pR1(1)),sin((1:t)/1e2),(pR2)/(pR2(1)),sin((1:t)/1e2),(pR5)/(pR5(1)))

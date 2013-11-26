@@ -87,7 +87,7 @@ l=1:nj;
 dJi(k,l)=(Ji(k+1,l)-Ji(k,l))/di;
 dJj(k,l)=(Jj(k,l+1)-Jj(k,l))/dj;
 
-lim=2e16/3;
+lim=1e15;
 
 for i=71:80
    for j=20:80

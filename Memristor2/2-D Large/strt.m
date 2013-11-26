@@ -18,8 +18,8 @@ global di;
 global dj;
 % di=L/ni;
 % dj=W/nj;
-dj=2e-5;
-di=2e-5;
+dj=1e-4;
+di=1e-4;
 L=ni*di;
 W=nj*dj;
 
@@ -89,8 +89,8 @@ for t=1:1e8
    [ p ] = delJp( p,Np,mup,Ej,Ei,di,dj,dt );
    
    snp(t)=sum(sum(p));
-  Nn(20,30:70)=5e16;
-  Np(20,30:70)=5e16;
+  Nn(20,30:70)=1e15;
+  Np(20,30:70)=1e15;
   
    I1(t)=q*di^2/dt*sum(  p(70:80,20)-1*abs(n(70:80,20)+Np(70:80,20)));
    I2(t)=q*di^2/dt*sum(  p(70:80,80)-1*abs(n(70:80,80)+Np(70:80,80)));
@@ -126,9 +126,9 @@ end
 %   plot(time(1:t),(1./abs(I1/I1(1))),time(1:t),1*(1./abs(I2/I2(1))))
 %  title(num2str(1./abs(I2(t)/I2(1))))
 %    quiver(Ei,Ej,2)
-       surf(interp2(p(61:85,:),2),'edgecolor','none')
-   view(0,-90);
-   grid off
+%        surf(interp2(Np(71:85,:),2),'edgecolor','none')
+%    view(0,-90);
+%    grid off
 %   %Pedot Bottom
 %   annotation('line',[0.275 .75],[.275 .275],'LineWidth',3)
 %   %Pedot Left
@@ -153,12 +153,15 @@ end
 %  text(340,340,'\fontsize{20}\color{white}Li,Perchlorate');
 %   text(340,590,'\fontsize{20}\color{white}n,p');
 %     text(170,590,'\fontsize{20}\color{white}n,p');
+
+     
+%      surf(p)
+%       view(0,-90);
+plot(1:ni,p(71,:),1:ni,Np(71,:))
      getframe;
      
      
-     
-%      surf(Np)
-%       view(0,-90);
+
     
 
 %   p(71:80,36:37)=0;

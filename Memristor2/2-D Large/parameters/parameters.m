@@ -48,18 +48,18 @@ r=1;
 % [ muNp ] = pmu( muNp ,70,80,51,70,mu_el_Np/r);
 
 
-% [ muNp ] = pmu( muNp ,70,80,35,37,0);
+% [ muNp ] = pmu( muNp ,70,80,49,51,0);
 % [ muNp ] = pmu( muNp ,71,80,70,80,mu_el_Np/r);
 %  [ muNp ] = pmu( muNp ,69,80,49,51,0);
  
 [ muNp ] = muj( muNp ,70,80,30,70,mu_el_Np/r);
-[ muNp ] = mui( muNp ,70,80,30,70,mu_el_Np);
+[ muNp ] = mui( muNp ,70,80,30,70,mu_el_Np/r);
 
 [ muNn ] = pmu( muNn ,20,70,30,70,mu_el_Np/r);
 
 % [ mup ] = pmu( mup ,20,72,25,75,mu_el_Np/1);
 [ mup ] = pmu( mup ,71,80,20,80,mu_el_Np/1);
-% [ mup ] = pmu( mup ,71,80,35,37,0);
+% [ mup ] = pmu( mup ,71,80,49,51,0);
 % [ mup ] = pmu( mup ,71,80,30,51,mu_el_Np/1);
 % [ mup ] = pmu( mup ,71,80,51,70,mu_el_Np/1);
 % [ mup ] = pmu( mup ,71,80,70,80,mu_el_Np/1);
@@ -72,7 +72,7 @@ Np=zeros(ni,nj);
 n=zeros(ni,nj);
 p=zeros(ni,nj);
 
-density=5e16/3;
+density=1e15/1;
  [ p  ] = pset_val( p ,71,80,20,80,density); 
 %  [ p  ] = pset_val( p ,71,80,51,80,2e16); 
  
@@ -80,6 +80,6 @@ density=5e16/3;
   [ n ] = pset_val( n ,71,80,20,80,density); 
 %   [ n ] = pset_val( n ,71,80,51,80,2e16); 
 
- [ Np ] = pset_val( Np,20,70,30,70,2.5*density); 
- [ Nn ] = pset_val( Nn,20,70,30,70,2.5*density); 
+ [ Np ] = pset_val( Np,20,70,30,70,1*density); 
+ [ Nn ] = pset_val( Nn,20,70,30,70,1*density); 
  
