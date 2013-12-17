@@ -40,9 +40,11 @@ end
 mu_el_Np=1e-3;
 
 
-r=100;
+r=1e2;
 
-[ muNp ] = pmu( muNp ,7,ni-8,27,nj-26,mu_el_Np/r);
+[ muNp ] = pmu( muNp ,7,ni-9,27,nj-26,mu_el_Np/r);
+[ muNp ] = mui( muNp ,ni-9,ni-8,27,nj-26,mu_el_Np/r);
+[ muNp ] = muj( muNp ,ni-9,ni-8,27,nj-26,mu_el_Np/r);
 [ muNn ] = pmu( muNn ,7,ni-9,27,nj-26,mu_el_Np/r);
 
 % [ muNp ] = pmu( muNp ,91,91,round(nj/2),round(nj/2),0);

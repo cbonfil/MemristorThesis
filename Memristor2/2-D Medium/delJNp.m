@@ -87,41 +87,41 @@ l=1:nj;
 dJi(k,l)=(Ji(k+1,l)-Ji(k,l))/di;
 dJj(k,l)=(Jj(k,l+1)-Jj(k,l))/dj;
 
-% lim=0.5e15;
-% 
-% for i=31:35
-%    for j=10:390
-%        
-%          if n(i,j)-dt*dJi(i,j)>lim
-%        
-%             if Ji(i,j)>0 
-%                 
-%            Ji(i,j)=0;
-%             end
-%             
-%             if Ji(i+1,j)<0 
-%                 
-%                Ji(i+1,j)=0;  
-%             end
-%           end
-%         
-%     
-%          if n(i,j)-dt*dJj(i,j)>lim
-%              
-%             if  Jj(i,j)>0 
-%            Jj(i,j)=0;
-%             end
-%             
-%             if  Jj(i,j+1)<0 
-%            Jj(i,j+1)=0;
-%             end 
-%             
-%          end
-%                       
-%     
-%    end
-% end
-% 
+lim=1e15;
+
+for i=91:96
+   for j=10:90
+       
+         if n(i,j)-dt*dJi(i,j)>lim
+       
+            if Ji(i,j)>0 
+                
+           Ji(i,j)=0;
+            end
+            
+            if Ji(i+1,j)<0 
+                
+               Ji(i+1,j)=0;  
+            end
+          end
+        
+    
+         if n(i,j)-dt*dJj(i,j)>lim
+             
+            if  Jj(i,j)>0 
+           Jj(i,j)=0;
+            end
+            
+            if  Jj(i,j+1)<0 
+           Jj(i,j+1)=0;
+            end 
+            
+         end
+                      
+    
+   end
+end
+
 
 
 dJi(k,l)=(Ji(k+1,l)-Ji(k,l))/di;

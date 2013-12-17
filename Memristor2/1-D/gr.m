@@ -5,7 +5,7 @@ function [ p] = gr( p,V,di,lim,mu,dt )
 p2=2*lim;
 E=sign(V(round(ni/2)))*(abs(V)-max(abs(V))/2)/di;
 D=mu/38;
-K=1e-2;
+K=100*dt;
 for i=(round(ni/8)-1):(round(7*ni/8))
     if p(i)<1*lim
         

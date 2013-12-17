@@ -66,10 +66,10 @@ l=1:nj;
 dJi(k,l)=(Ji(k+1,l)-Ji(k,l))/di;
 dJj(k,l)=(Jj(k,l+1)-Jj(k,l))/dj;
 
-% lim=2e26;
-% 
-% for i=70:80
-%    for j=20:51
+lim=1e15;
+
+% for i=91
+%    for j=10:90
 %          if n(i,j)-dt*dJi(i,j)>lim
 %        
 %             if Ji(i,j)>0 

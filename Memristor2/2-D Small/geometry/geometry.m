@@ -35,8 +35,8 @@ mat=[100    1  0 1 1/38;
 % %      101     1   4 6  nj-5  nj-3 1 -0.2];
  
    % Mat# Shape i1 i2 j1 j2 VBC VBV 
-in=[ 100     1   ni-10  ni-8 1  3   1 0;
-     101     1  ni-10  ni-8  nj-2  nj 1 1];
+in=[ 100     1   ni-10  ni-8 1  3   1 1;
+     101     1  ni-10  ni-8  nj-2  nj 1 0];
 %   ni-9  ni-7 
 %  %Material Properties
 %      %Mat# er r0 mu D

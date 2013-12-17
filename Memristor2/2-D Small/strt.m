@@ -1,7 +1,7 @@
 close all
 clear all
 
-set(0, 'DefaultFigureRenderer', 'zbuffer');
+set(0, 'DefaultFigureRenderer', 'opengl');
 set(0,'DefaultFigureWindowStyle','docked');
 
 cd geometry;
@@ -50,7 +50,22 @@ mu(1,6:95)=1e-3;
 % mu(50)=0;
 D=mu/38;
 
-for t=1:4e5
+DC=1;
+for t=1:1000e3
+    
+    
+    if t==250e3 
+        DC=0;
+%         VBV=VBV*0 ;
+    elseif t==750e3
+        
+        DC=1;
+        
+    end
+    
+    %         if mod(t,280e3)==0
+    %            VBV=-VBV;
+    %         end
     
     rhs=reshape((VBV-(1*q/e0*(-Nn+Np-1*n+1*p))),ni*nj,1);
     V=Q*(U\(L\(P*(rhs))));
@@ -69,22 +84,21 @@ for t=1:4e5
     Np0=Np;
     n0=n;
     p0=p;
-    if t>1e5
+    f=100;
+    if t>1e3
+        %         mu(1,6:95)=  1e-3.*((1.25-1./(1+exp(-1*Np(pos,6:95)/14e13))))/1.25;
+        %         D=mu/38;
+                VBV=VB0*(DC+0.001*sin(2*pi*f*time(t)));
         [ Nn ] = delJNn( Nn,muNn,Ej,Ei,di,dj,dt );
         [ Np ] = delJNp( Np,muNp,Ej,Ei,di,dj,dt );
-     end
-%      mu(1,6:95)=  1e-3.*((1.1-1./(1+exp(-1*Np(pos,6:95)/14e13))))/1.1;
-%                  D=mu/38;
-    %      [ n(pos,:) ] = ddJ(n(pos,:), ni,Ei(pos,:),dt,di,mu,D);
+    end
+    
     [ p(pos,:) ] = ddJ(p(pos,:), ni,-Ei(pos,:),dt,di,mu,D);
-     
-    %
-    %    [ n ] = delJn( n,mun,Ej,Ei,di,dj,dt );
-    %    [ p ] = delJp( p,Np,mup,Ej,Ei,di,dj,dt );
+    
+    Vt(t)=sin(2*pi*f*time(t));
     
     snp(t)=sum(sum(p));
-    %       Nn(20,30:70)=2.5e15;
-    %       Np(20,30:70)=2.5e15;
+    
     J1(t)= p(pos,94)*(Ei(pos,95)+Ei(pos,94))/2;
     J2(t)=  p(pos,6)*(Ei(pos,6)+Ei(pos,5))/2;
     
@@ -102,24 +116,21 @@ for t=1:4e5
     dn(t)=max(max(abs(n0-n)./n));
     dp(t)=max(max(abs(p0-p)./p)) ;
     
-    if mod(t,1e3)==0
+    if mod(t,1e2)==0
         
-        sNp(:,:,(t/10)+1)=Np;
-        sNn(:,:,(t/10)+1)=Nn;
-        sp(:,:,(t/10)+1)=p;
-        
+        sNp(:,:,(t/100))=Np;
+        sNn(:,:,(t/100))=Nn;
+        sp(:,:,(t/100))=p;
+        sNpplt(:,(t/100))=Np(pos,:);
     end
     
     percent=100*t/1000e3;
     if mod(percent,1)==0
         percent
-        toc
+        (100-percent)* toc/percent/60
     end
-    I10=1.1106e+16;
-    I20=1.1414e+16;
-    if mod(t,1e2)==0
-        
-        
+    
+    if mod(t,1e3)==0
         
         
         %   subplot(3,1,1);   plot(time(1:t),log10(abs(abs(I1)-abs(I2))./(abs(I1)+abs(I2))))
@@ -141,21 +152,31 @@ for t=1:4e5
         % %         surf(V)
         %           view(0,-90);
         %         grid off
-        subplot(3,1,1);   plot(1:ni,1*p(pos,:),1:ni,Np(pos,:))
-        subplot(3,1,2);
-        %        plot(time(1:t),J1,time(1:t),J2)
-        if t>1e3
-               plot(time(1000:t),1./abs(I1(1000:t)*di/dt),time(1000:t),1./abs(I2(1000:t)*di/dt))
-              
-        end
-%         plot(netcharge)
-        subplot(3,1,3);
-        plot(Ei(pos,:))
-        getframe;
+        %         subplot(3,1,1);   plot(1:ni,1*p(pos,:),1:ni,Np(pos,:))
+        %         subplot(3,1,2);
+        %         %        plot(time(1:t),J1,time(1:t),J2)
+        %         if t>1e3
+        %                plot(time(1000:t),1./abs(I1(1000:t)*di/dt),time(1000:t),1./abs(I2(1000:t)*di/dt))
+        %
+        %         end
+        %         plot(netcharge)
+        %         subplot(3,1,3);
+        %         plot(Ei(pos,:))
         
+%         if mod(t,1e3)==0
+%             %              plot(Vt,I1/I1(1e3-10))
+%             %
+%             plot(time(1:t),I1/I1(1e3-10))
+%             %             surf( sNpplt,'edgecolor','none')
+%             %             colorbar
+%             %             view(0,90)
+%             %             grid off
+%             %             axis off
+%             getframe;
+%         end
         
     end
     
     
 end
-
+save('2dmem_retention')

@@ -15,7 +15,11 @@ global DNn;
 global DNp;
 global Dn;
 global Dp;
- 
+global posf; 
+
+posf=92;
+
+
  muNn=zeros(ni,nj,2);
  muNp=zeros(ni,nj,2);
  mun=zeros(ni,nj,2);
@@ -35,31 +39,20 @@ end
 
  [VBV,VBC ] = gboundary( G,mat,in);
 
- 
+
  
 mu_el_Np=1e-3;
 
-k=1;
-r=1;
-% [ muNp ] = pmu( muNp ,20,70,30,70,mu_el_Np/r);
-% [ muNp ] = pmu( muNp ,71,80,20,30,mu_el_Np/r);
 
-% [ muNp ] = pmu( muNp ,70,80,30,51,mu_el_Np/r);
-% [ muNp ] = pmu( muNp ,70,80,51,70,mu_el_Np/r);
+r=100;
 
+[ muNp ] = pmu( muNp ,7,posf,27,nj-26,mu_el_Np/r);
+[ muNn ] = pmu( muNn ,7,ni-9,27,nj-26,mu_el_Np/r);
 
-% [ muNp ] = pmu( muNp ,70,80,35,37,0);
-% [ muNp ] = pmu( muNp ,71,80,70,80,mu_el_Np/r);
-%  [ muNp ] = pmu( muNp ,69,80,49,51,0);
- 
-[ muNp ] = pmu( muNp ,10,ni-5,10,nj-10,mu_el_Np/r);
-[ muNn ] = pmu( muNn ,10,ni-10,10,nj-10,mu_el_Np/r);
+[ mup ] = pmu( mup ,91,posf,5,95,mu_el_Np/1);
 
-[ mup ] = pmu( mup ,ni-10,ni-5,5,25,mu_el_Np/1);
-% [ mun ] = pmu( mun ,10,15,10,nj-9,mu_el_Np/1);
-
-
-% [ mup ] = pmu( mup ,69,80,49,51,0);
+% [ mup ] = pmu( mup ,5,95,ni-9,ni-3,mu_el_Np/r);
+% [ muNp ] = pmu( muNp ,91,91,round(nj/2),round(nj/2),0);
 
 Nn=zeros(ni,nj);
 Np=zeros(ni,nj);
@@ -67,10 +60,10 @@ n=zeros(ni,nj);
 p=zeros(ni,nj);
 
 density=1e15;
- [ p  ] = pset_val( p ,ni-10,ni-5,5,25,0.5*density);
- [ n ] = pset_val( n ,ni-10,ni-5,5,25,0.5*density); 
+ [ p  ] = pset_val( p ,91,posf,5,95,density); 
+ [ n  ] = pset_val( n ,91,posf,5,95,density); 
+ 
 
-
- [ Np ] = pset_val( Np,10,ni-10,10,nj-10,1*density); 
- [ Nn ] = pset_val( Nn,10,ni-10,10,nj-10,1*density); 
+ [ Np ] = pset_val( Np,7,ni-9,27,nj-26,2*density); 
+ [ Nn ] = pset_val( Nn,7,ni-9,27,nj-26,2*density); 
  
